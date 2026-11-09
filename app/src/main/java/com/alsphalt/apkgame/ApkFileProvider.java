@@ -11,6 +11,7 @@ import android.provider.OpenableColumns;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  * Minimal, dependency-free replacement for FileProvider: exposes exactly one file - the
@@ -52,8 +53,15 @@ public class ApkFileProvider extends ContentProvider {
         }
         File dir = updatesDir(getContext());
         File file = new File(dir, name);
-        String dirPath = dir.getCanonicalPath();
-        if (!file.getCanonicalPath().startsWith(dirPath + File.separator)) {
+        String dirPath;
+        String filePath;
+        try {
+            dirPath = dir.getCanonicalPath();
+            filePath = file.getCanonicalPath();
+        } catch (IOException e) {
+            throw new FileNotFoundException("Cannot resolve update path: " + e);
+        }
+        if (!filePath.startsWith(dirPath + File.separator)) {
             throw new FileNotFoundException("Path escapes update dir: " + uri);
         }
         if (!file.isFile()) {

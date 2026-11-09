@@ -82,7 +82,6 @@ public final class UpdateManager {
     private boolean wifiCallbackRegistered;
     private long lastCheckAt;
     private String promptedVersion = "";
-    private String stagedVersion = "";
 
     private UpdateManager(Context appContext) {
         this.appContext = appContext;
@@ -320,7 +319,6 @@ public final class UpdateManager {
                             toast(activity, "Update failed: " + failure);
                             return;
                         }
-                        stagedVersion = rel.versionName;
                         requestInstall(rel);
                     }
                 });
