@@ -442,7 +442,7 @@ public class GameView extends View {
 
             textPaint.setColor(Color.WHITE);
             textPaint.setTextSize(h * 0.085f);
-            canvas.drawText(state == READY ? "APK GAME" : "CRASHED", w * 0.5f, h * 0.43f, textPaint);
+            canvas.drawText(state == READY ? "DARK NOTE" : "CRASHED", w * 0.5f, h * 0.43f, textPaint);
 
             textPaint.setTextSize(h * 0.040f);
             textPaint.setColor(Color.argb(220, 255, 255, 255));

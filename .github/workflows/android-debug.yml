@@ -13,6 +13,8 @@ jobs:
   build:
     name: Assemble debug APK
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout
@@ -32,17 +34,50 @@ jobs:
       - name: Build debug APK
         run: gradle :app:assembleDebug --no-daemon --stacktrace
 
-      - name: Show APK details
+      - name: Verify APK
         run: |
-          ls -lh app/build/outputs/apk/debug/
-          echo "### Debug APK built" >> $GITHUB_STEP_SUMMARY
+          set -euo pipefail
+          APK=app/build/outputs/apk/debug/app-debug.apk
+          ls -lh "$APK"
+          echo "### DARK NOTE debug APK" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          ls -lh app/build/outputs/apk/debug/app-debug.apk >> $GITHUB_STEP_SUMMARY
+          ls -lh "$APK" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "SHA-256: \`$(sha256sum "$APK" | cut -d' ' -f1)\`" >> $GITHUB_STEP_SUMMARY
+          # No credential may ship inside the package.
+          if unzip -p "$APK" | grep -aq "ghp_[A-Za-z0-9]\{20,\}"; then
+            echo "::error::GitHub token material found inside the APK"
+            exit 1
+          fi
+          echo "Secret scan: no GitHub token patterns in the APK"
 
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: app-debug
+          name: Android-Debug-Build
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
+
+      - name: Publish update feed
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          APK=app/build/outputs/apk/debug/app-debug.apk
+          VC=$(grep -oP 'versionCode\s+\K[0-9]+' app/build.gradle)
+          VN=$(grep -oP 'versionName\s+"\K[^"]+' app/build.gradle)
+          SHA=$(sha256sum "$APK" | cut -d' ' -f1)
+          SHORT=${GITHUB_SHA:0:7}
+          printf '{\n  "versionCode": %s,\n  "versionName": "%s",\n  "apk": "app-debug.apk",\n  "sha256": "%s",\n  "notes": "Build %s"\n}\n' \
+            "$VC" "$VN" "$SHA" "$SHORT" > update.json
+          cat update.json
+          NOTES="DARK NOTE $VN — automatic updates, Wi-Fi only. Build $SHORT."
+          if gh release view nightly >/dev/null 2>&1; then
+            gh release upload nightly "$APK" update.json --clobber
+            gh release edit nightly --notes "$NOTES" --latest
+          else
+            gh release create nightly "$APK" update.json \
+              --title "DARK NOTE nightly" --notes "$NOTES" --latest
+          fi

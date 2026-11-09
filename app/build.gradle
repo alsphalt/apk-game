@@ -2,6 +2,11 @@ plugins {
     id 'com.android.application'
 }
 
+// CI signing keeps the certificate stable across builds so an in-place update can be
+// installed over a previously published APK. This is a debug-only key; it must never
+// be used for a Play Store release.
+def ciDebugStore = rootProject.file('ci/darknote-debug.keystore')
+
 android {
     namespace 'com.alsphalt.apkgame'
     compileSdk 34
@@ -10,14 +15,28 @@ android {
         applicationId "com.alsphalt.apkgame"
         minSdk 24
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
+    }
+
+    if (ciDebugStore.exists()) {
+        signingConfigs {
+            ciDebug {
+                storeFile ciDebugStore
+                storePassword 'darknotedebug'
+                keyAlias 'darknote'
+                keyPassword 'darknotedebug'
+            }
+        }
     }
 
     buildTypes {
         debug {
             applicationIdSuffix ""
             minifyEnabled false
+            if (ciDebugStore.exists()) {
+                signingConfig signingConfigs.ciDebug
+            }
         }
         release {
             minifyEnabled false

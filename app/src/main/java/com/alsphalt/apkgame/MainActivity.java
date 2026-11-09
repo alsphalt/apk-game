@@ -42,6 +42,8 @@ public class MainActivity extends Activity {
         super.onResume();
         goFullscreen();
         if (game != null) game.resumeGame();
+        // Wi-Fi-only, token-free update check. Silently no-ops when offline or on mobile data.
+        UpdateManager.get(this).onResume(this);
     }
 
     @Override
