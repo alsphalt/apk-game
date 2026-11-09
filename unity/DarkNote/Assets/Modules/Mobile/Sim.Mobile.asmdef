@@ -1,0 +1,6 @@
+{
+  "name": "Sim.Mobile",
+  "rootNamespace": "Sim.Mobile",
+  "references": ["Sim.Core", "Unity.RenderPipelines.Universal.Runtime"],
+  "autoReferenced": true
+}

@@ -9,6 +9,16 @@ on a custom `View` — no third-party dependencies, no AndroidX, no image assets
 
 Package: `com.alsphalt.apkgame` · label: **DARK NOTE** · version 1.1 (versionCode 2)
 
+## Two apps live here
+
+| Folder | What it is | Workflow | Needs secrets |
+| --- | --- | --- | --- |
+| repository root | Canvas endless runner, plain Gradle | `Build Debug APK` → `Android-Debug-Build` | no |
+| [`unity/DarkNote`](unity/DarkNote) | Unity 6 open-world driving sim (open-world city, 60 cars, garage) | `Build Android APK` → `DarkNote-Android-APK-*` | **yes**, Unity licence |
+
+The Unity app cannot build without a Unity licence. See [`unity/DarkNote/README.md`](unity/DarkNote/README.md)
+for the exact secrets to add.
+
 ## Get the APK
 
 1. Open the **Actions** tab.

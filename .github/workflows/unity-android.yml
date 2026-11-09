@@ -1,0 +1,114 @@
+name: Build Android APK
+
+# Manual run: Actions -> Build Android APK -> Run workflow -> pick debug or release.
+# Also runs automatically when the Unity project changes on main.
+
+on:
+  workflow_dispatch:
+    inputs:
+      buildType:
+        description: "Build type"
+        type: choice
+        options: [debug, release]
+        default: debug
+  push:
+    branches: [ main ]
+    paths:
+      - "unity/DarkNote/**"
+      - ".github/workflows/unity-android.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Unity Android APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+          fetch-depth: 1
+
+      - name: Check Unity credentials
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        run: |
+          if [ -n "$UNITY_LICENSE" ]; then
+            echo "Using UNITY_LICENSE (license file)."
+          elif [ -n "$UNITY_EMAIL" ] && [ -n "$UNITY_PASSWORD" ]; then
+            echo "Using Unity account credentials."
+          else
+            echo "::error::No Unity credentials found. Add UNITY_LICENSE (the contents of your .ulf licence file) or UNITY_EMAIL + UNITY_PASSWORD (+ UNITY_SERIAL for Pro) in Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Decode release keystore (release builds only)
+        if: ${{ inputs.buildType == 'release' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > release.keystore
+            echo "Release keystore ready."
+          else
+            echo "::warning::ANDROID_KEYSTORE_BASE64 is not set; the release APK will be signed with the debug key."
+          fi
+
+      - name: Cache Unity Library
+        uses: actions/cache@v4
+        with:
+          path: unity/DarkNote/Library
+          key: unity-${{ hashFiles('unity/DarkNote/Packages/manifest.json', 'unity/DarkNote/ProjectSettings/ProjectVersion.txt') }}-${{ github.sha }}
+          restore-keys: |
+            unity-${{ hashFiles('unity/DarkNote/Packages/manifest.json', 'unity/DarkNote/ProjectSettings/ProjectVersion.txt') }}-
+            unity-
+
+      - name: Build APK
+        uses: game-ci/unity-builder@v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+          UNITY_SERIAL: ${{ secrets.UNITY_SERIAL }}
+          DARKNOTE_BUILD_DEBUG: ${{ (inputs.buildType == 'release') && '0' || '1' }}
+          DARKNOTE_KEYSTORE_PATH: ${{ github.workspace }}/release.keystore
+          DARKNOTE_KEYSTORE_PASS: ${{ secrets.ANDROID_KEYSTORE_PASS }}
+          DARKNOTE_KEYALIAS: ${{ secrets.ANDROID_KEYALIAS }}
+          DARKNOTE_KEYALIAS_PASS: ${{ secrets.ANDROID_KEYALIAS_PASS }}
+        with:
+          projectPath: unity/DarkNote
+          unityVersion: 6000.0.85f2
+          targetPlatform: Android
+          androidExportType: androidPackage
+          androidBuildAppBundle: false
+          buildMethod: BuildTools.BuildScript.PerformBuild
+          allowDirtyBuild: true
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: DarkNote-Android-APK-${{ inputs.buildType || 'debug' }}
+          path: unity/DarkNote/build/Android/*.apk
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### DARK NOTE Android build"
+            echo ""
+            echo "- Type: \`${{ inputs.buildType || 'debug' }}\`"
+            echo "- Unity: \`6000.0.85f2\`"
+            echo "- Artifact: \`DarkNote-Android-APK-${{ inputs.buildType || 'debug' }}\`"
+            if [ "${{ job.status }}" != "success" ]; then
+              echo ""
+              echo "**Status: ${{ job.status }}** — open this job's log; failed Unity steps print the compiler errors."
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

@@ -1,0 +1,12 @@
+{
+  "name": "Sim.Traffic",
+  "rootNamespace": "Sim.Traffic",
+  "references": [
+    "Sim.Core",
+    "Sim.World",
+    "Sim.Vehicles",
+    "Unity.Addressables",
+    "Unity.ResourceManager"
+  ],
+  "autoReferenced": true
+}

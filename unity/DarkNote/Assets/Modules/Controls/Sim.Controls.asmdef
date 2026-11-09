@@ -1,0 +1,11 @@
+{
+  "name": "Sim.Controls",
+  "rootNamespace": "Sim.Controls",
+  "references": [
+    "Sim.Vehicles",
+    "UnityEngine.UI",
+    "Unity.Addressables",
+    "Unity.ResourceManager"
+  ],
+  "autoReferenced": true
+}

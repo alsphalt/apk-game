@@ -1,0 +1,66 @@
+#Approximate figures from public spec sheets, rounded. VERIFY every row against official data before relying on it.
+#gears: a preset name (ZF8HP, ZF8HP_SUPRA, AT10, MT82, DCT7, MAN5, MAN6, MAN6_M) or explicit ratios separated by |
+#turbo: 0 = naturally aspirated, 1 = modern turbo, 2 = large old-style turbo (more lag), 3 = supercharged
+#grip: tyre friction stiffness (1.7 economy ... 2.4 track). front: front weight share. wb: wheelbase m. sport: suspension stiffness multiplier. awdFront: front torque share (AWD only). vmax: electronic limiter km/h.
+#Replace brand and model with fictional names if you do not have licences.
+id,brand,model,year,body,drive,hp,nm,mass,redline,turbo,gears,final,reverse,cd,area,wheelR,downforce,cyl,layout,grip,front,wb,sport,awdFront,vmax
+audi_rs7_2020,Audi,RS7 Sportback,2020,Sedan,AWD,591,800,2065,6800,1,ZF8HP,3.1,3.317,0.31,2.3,0.35,0.3,8,V8,2.1,0.57,2.93,1.1,0.4,250
+audi_rs6_avant_c8,Audi,RS6 Avant,2020,Wagon,AWD,600,800,2075,6800,1,ZF8HP,3.1,3.317,0.31,2.4,0.35,0.25,8,V8,2.1,0.57,2.93,1.1,0.4,250
+audi_rs5_coupe_b9,Audi,RS5 Coupe,2018,Coupe,AWD,444,600,1730,6700,1,ZF8HP,3.2,3.317,0.30,2.2,0.34,0.25,6,V6,2.1,0.58,2.76,1.1,0.4,250
+audi_rs3_8y,Audi,RS3 Sedan,2022,Sedan,AWD,400,500,1575,7000,1,DCT7,3.5,3.5,0.30,2.2,0.34,0.2,5,I5,2.15,0.60,2.63,1.1,0.35,250
+audi_tt_rs_8s,Audi,TT RS,2019,Coupe,AWD,400,480,1450,7000,1,DCT7,3.5,3.5,0.32,2.1,0.335,0.25,5,I5,2.1,0.58,2.51,1.15,0.35,250
+audi_r8_v10_2019,Audi,R8 V10 Performance,2019,Super,AWD,602,560,1670,8700,0,DCT7,3.2,3.5,0.35,2.0,0.34,0.45,10,V10,2.3,0.42,2.65,1.3,0.25,330
+audi_rsq8_2020,Audi,RS Q8,2020,SUV,AWD,591,800,2315,6800,1,ZF8HP,3.1,3.317,0.33,2.85,0.39,0.1,8,V8,1.9,0.57,2.99,0.95,0.4,250
+audi_s4_b9,Audi,S4,2019,Sedan,AWD,349,500,1700,6500,1,ZF8HP,3.2,3.317,0.28,2.2,0.335,0.15,6,V6,2.0,0.58,2.82,1.0,0.4,250
+audi_s3_8y,Audi,S3,2021,Sedan,AWD,306,400,1520,6500,1,DCT7,3.5,3.5,0.29,2.2,0.34,0.15,4,I4,2.0,0.60,2.63,1.05,0.35,250
+audi_a4_b9,Audi,A4 45 TFSI,2020,Sedan,AWD,261,370,1560,6500,1,DCT7,3.6,3.5,0.27,2.2,0.33,0.1,4,I4,1.9,0.59,2.82,0.9,0.4,250
+audi_a6_c8,Audi,A6 55 TFSI,2019,Sedan,AWD,340,500,1900,6500,1,DCT7,3.4,3.5,0.27,2.3,0.35,0.1,6,V6,1.9,0.57,2.93,0.9,0.4,250
+audi_sport_quattro_1984,Audi,Sport Quattro,1984,Coupe,AWD,306,350,1300,7000,2,MAN5,4.0,3.7,0.40,1.9,0.32,0.0,5,I5,1.8,0.60,2.22,1.0,0.5,250
+audi_r8_v8_2008,Audi,R8 V8,2008,Super,AWD,420,430,1560,8250,0,MAN6,3.7,3.5,0.34,2.0,0.335,0.3,8,V8,2.15,0.43,2.65,1.2,0.25,300
+audi_rs4_b7,Audi,RS4 Avant,2007,Wagon,AWD,420,430,1710,8250,0,MAN6,3.6,3.5,0.31,2.2,0.335,0.1,8,V8,2.0,0.57,2.64,1.0,0.4,250
+audi_a3_35tfsi,Audi,A3 Sportback 35 TFSI,2021,Hatch,FWD,150,250,1320,6200,1,MAN6,3.9,3.5,0.30,2.2,0.32,0.0,4,I4,1.8,0.61,2.64,0.85,0.4,224
+bmw_m3_g80,BMW,M3 Competition,2021,Sedan,RWD,503,650,1730,7200,1,ZF8HP,3.15,3.317,0.33,2.3,0.34,0.35,6,I6,2.2,0.52,2.86,1.15,0.4,250
+bmw_m4_g82,BMW,M4 Competition,2021,Coupe,RWD,503,650,1725,7200,1,ZF8HP,3.15,3.317,0.34,2.2,0.34,0.35,6,I6,2.2,0.52,2.86,1.2,0.4,250
+bmw_m5_f90,BMW,M5 Competition,2019,Sedan,AWD,617,750,1940,7200,1,ZF8HP,3.15,3.317,0.33,2.35,0.35,0.3,8,V8,2.2,0.52,2.98,1.15,0.3,250
+bmw_m2_g87,BMW,M2,2023,Coupe,RWD,453,550,1700,7200,1,ZF8HP,3.15,3.317,0.34,2.2,0.34,0.3,6,I6,2.2,0.52,2.74,1.2,0.4,250
+bmw_m240i_g42,BMW,M240i,2022,Coupe,RWD,382,500,1570,7000,1,ZF8HP,3.4,3.317,0.30,2.1,0.335,0.15,6,I6,2.0,0.52,2.74,1.0,0.4,250
+bmw_330i_g20,BMW,330i,2019,Sedan,RWD,255,400,1560,6500,1,ZF8HP,3.4,3.317,0.26,2.2,0.33,0.1,4,I4,1.9,0.51,2.85,0.9,0.4,250
+bmw_x5m_f95,BMW,X5 M Competition,2020,SUV,AWD,617,750,2310,7000,1,ZF8HP,3.15,3.317,0.34,2.9,0.39,0.1,8,V8,2.0,0.52,2.98,1.0,0.3,250
+bmw_1m_e82,BMW,1 Series M Coupe,2011,Coupe,RWD,340,450,1570,7000,1,MAN6,3.4,3.5,0.33,2.0,0.33,0.1,6,I6,2.1,0.53,2.66,1.25,0.4,250
+bmw_m3_e46,BMW,M3 (E46),2001,Coupe,RWD,338,365,1495,8000,0,MAN6_M,3.62,3.55,0.33,2.0,0.33,0.1,6,I6,2.0,0.53,2.73,1.2,0.4,250
+bmw_m3_e92,BMW,M3 (E92),2008,Coupe,RWD,414,400,1655,8400,0,DCT7,3.15,3.5,0.31,2.1,0.335,0.15,8,V8,2.1,0.51,2.76,1.2,0.4,250
+bmw_m3_e30,BMW,M3 (E30),1988,Coupe,RWD,200,240,1200,7250,0,MAN5,4.1,3.7,0.33,1.9,0.31,0.0,4,I4,1.8,0.52,2.56,1.1,0.4,235
+bmw_m8_f92,BMW,M8 Competition Coupe,2020,Coupe,AWD,617,750,1960,7200,1,ZF8HP,3.15,3.317,0.32,2.3,0.35,0.3,8,V8,2.2,0.52,2.82,1.15,0.3,250
+bmw_z4_m40i,BMW,Z4 M40i,2019,Sports,RWD,335,500,1535,6500,1,ZF8HP,3.15,3.317,0.34,2.0,0.335,0.15,6,I6,2.1,0.50,2.47,1.2,0.4,250
+bmw_540i_g30,BMW,540i,2020,Sedan,RWD,335,450,1760,6500,1,ZF8HP,3.15,3.317,0.26,2.2,0.335,0.1,6,I6,1.9,0.52,2.98,0.9,0.4,250
+bmw_m135i_f40,BMW,M135i xDrive,2020,Hatch,AWD,306,450,1525,6500,1,ZF8HP,3.6,3.317,0.31,2.1,0.32,0.1,4,I4,2.0,0.60,2.67,1.1,0.75,250
+ford_mustang_gt_2018,Ford,Mustang GT,2018,Coupe,RWD,460,570,1680,7500,0,AT10,3.55,4.866,0.35,2.2,0.34,0.25,8,V8,2.1,0.54,2.72,1.1,0.4,250
+ford_mustang_gt_2024,Ford,Mustang GT (S650),2024,Coupe,RWD,480,567,1760,7500,0,AT10,3.55,4.866,0.35,2.2,0.34,0.25,8,V8,2.15,0.54,2.72,1.1,0.4,250
+ford_mustang_mach1,Ford,Mustang Mach 1,2021,Coupe,RWD,480,570,1760,7500,0,MT82,3.73,3.28,0.36,2.2,0.34,0.4,8,V8,2.2,0.54,2.72,1.25,0.4,267
+ford_mustang_gt500,Ford,Shelby GT500,2020,Coupe,RWD,760,847,1890,7500,3,DCT7,3.7,3.3,0.36,2.2,0.345,0.6,8,V8,2.3,0.55,2.72,1.3,0.4,289
+ford_mustang_boss302,Ford,Mustang Boss 302,2012,Coupe,RWD,444,515,1700,7500,0,MT82,3.73,3.28,0.37,2.2,0.34,0.2,8,V8,2.1,0.54,2.72,1.25,0.4,250
+ford_mustang_ecoboost,Ford,Mustang EcoBoost,2018,Coupe,RWD,310,475,1620,6500,1,AT10,3.31,4.866,0.36,2.2,0.335,0.15,4,I4,1.95,0.53,2.72,1.0,0.4,233
+ford_focus_rs_mk3,Ford,Focus RS,2016,Hatch,AWD,350,470,1560,6800,1,MAN6,3.8,3.5,0.33,2.1,0.34,0.1,4,I4,2.15,0.62,2.65,1.15,0.65,250
+ford_focus_st_mk4,Ford,Focus ST,2019,Hatch,FWD,276,420,1440,6500,1,MAN6,3.9,3.5,0.31,2.1,0.335,0.1,4,I4,2.0,0.62,2.70,1.1,0.4,250
+ford_fiesta_st_mk8,Ford,Fiesta ST,2018,Hatch,FWD,200,290,1280,6500,1,MAN6,4.1,3.5,0.32,2.0,0.31,0.05,3,I3,1.95,0.62,2.50,1.1,0.4,230
+ford_gt_2017,Ford,Ford GT,2017,Super,RWD,647,746,1385,7000,1,DCT7,3.2,3.5,0.34,2.0,0.34,0.9,6,V6,2.4,0.42,2.71,1.4,0.4,348
+ford_f150_raptor,Ford,F-150 Raptor,2021,Truck,AWD,450,691,2750,6000,1,AT10,3.73,4.866,0.40,3.4,0.40,0.0,6,V6,1.7,0.55,3.69,0.7,0.4,170
+ford_f150_raptor_r,Ford,F-150 Raptor R,2023,Truck,AWD,700,868,2900,6500,3,AT10,3.73,4.866,0.42,3.5,0.41,0.0,8,V8,1.75,0.55,3.69,0.75,0.4,180
+ford_bronco_2021,Ford,Bronco Wildtrak,2021,SUV,AWD,330,563,2250,6000,1,AT10,4.46,4.866,0.38,2.9,0.39,0.0,6,V6,1.7,0.55,2.55,0.75,0.4,180
+ford_explorer_st,Ford,Explorer ST,2020,SUV,AWD,400,563,2180,6500,1,AT10,3.58,4.866,0.35,2.9,0.38,0.05,6,V6,1.9,0.55,3.00,0.95,0.4,230
+ford_ranger_raptor,Ford,Ranger Raptor,2023,Truck,AWD,405,583,2500,6500,1,AT10,3.73,4.866,0.40,3.2,0.38,0.0,6,V6,1.7,0.55,3.27,0.75,0.4,180
+toyota_supra_a90,Toyota,GR Supra 3.0,2020,Coupe,RWD,382,500,1540,7000,1,ZF8HP_SUPRA,3.15,4.0,0.29,2.1,0.34,0.3,6,I6,2.2,0.50,2.47,1.25,0.4,250
+toyota_supra_a90_2l,Toyota,GR Supra 2.0,2020,Coupe,RWD,255,400,1450,6500,1,ZF8HP_SUPRA,3.15,4.0,0.29,2.1,0.335,0.25,4,I4,2.1,0.50,2.47,1.15,0.4,250
+toyota_supra_a80,Toyota,Supra Turbo (A80),1993,Coupe,RWD,320,427,1510,6800,2,3.827|2.360|1.685|1.312|1.0|0.793,3.13,3.83,0.32,2.0,0.33,0.15,6,I6,2.0,0.53,2.55,1.1,0.4,250
+toyota_ae86_trueno,Toyota,Sprinter Trueno AE86,1985,Coupe,RWD,128,149,940,7600,0,3.587|2.022|1.384|1.0|0.861,4.1,4.37,0.36,1.8,0.30,0.0,4,I4,1.75,0.54,2.40,1.0,0.4,190
+toyota_gr86,Toyota,GR86,2022,Coupe,RWD,228,250,1280,7400,0,3.626|2.188|1.541|1.213|1.0|0.767,4.1,3.44,0.27,2.0,0.32,0.1,4,F4,2.05,0.53,2.58,1.2,0.4,230
+toyota_gr_corolla,Toyota,GR Corolla,2023,Hatch,AWD,300,370,1470,7000,1,MAN6,4.4,3.5,0.34,2.2,0.335,0.1,3,I3,2.15,0.60,2.64,1.15,0.6,230
+toyota_gr_yaris,Toyota,GR Yaris,2021,Hatch,AWD,261,360,1280,7000,1,MAN6,4.4,3.5,0.34,2.0,0.31,0.1,3,I3,2.1,0.60,2.56,1.15,0.6,230
+toyota_camry_trd,Toyota,Camry TRD,2020,Sedan,FWD,301,362,1640,6800,0,ZF8HP_SUPRA,3.6,4.0,0.29,2.3,0.335,0.1,6,V6,1.85,0.58,2.82,1.0,0.4,210
+toyota_corolla_2020,Toyota,Corolla Hatchback 2.0,2019,Hatch,FWD,169,203,1330,6600,0,MAN6,3.7,3.5,0.29,2.2,0.315,0.0,4,I4,1.8,0.60,2.64,0.85,0.4,200
+toyota_rav4_2021,Toyota,RAV4,2021,SUV,AWD,203,249,1580,6600,0,ZF8HP,3.9,3.317,0.32,2.8,0.36,0.0,4,I4,1.75,0.58,2.69,0.8,0.45,190
+toyota_land_cruiser_300,Toyota,Land Cruiser 300 GR-S,2022,SUV,AWD,409,650,2650,6000,1,AT10,4.1,4.866,0.35,3.2,0.40,0.0,6,V6,1.75,0.55,2.85,0.75,0.5,210
+toyota_tundra_trd,Toyota,Tundra TRD Pro,2022,Truck,AWD,389,649,2800,6000,1,AT10,3.9,4.866,0.42,3.4,0.41,0.0,6,V6,1.7,0.56,3.70,0.7,0.4,170
+toyota_4runner,Toyota,4Runner TRD Off-Road,2020,SUV,AWD,270,377,2100,6000,0,3.52|2.04|1.40|1.0|0.72,3.73,3.22,0.38,3.0,0.38,0.0,6,V6,1.65,0.55,2.79,0.7,0.4,170
+toyota_celica_gt4,Toyota,Celica GT-Four (ST205),1994,Coupe,AWD,255,304,1290,6800,2,MAN5,4.2,3.7,0.33,1.9,0.31,0.1,4,I4,1.95,0.62,2.52,1.1,0.5,235
+toyota_mr2_turbo,Toyota,MR2 Turbo (SW20),1991,Sports,RWD,245,304,1280,7000,2,MAN5,4.2,3.7,0.33,1.8,0.30,0.1,4,I4,1.95,0.42,2.40,1.2,0.4,245

@@ -1,0 +1,6 @@
+{
+  "name": "Sim.Vehicles",
+  "rootNamespace": "Sim.Vehicles",
+  "references": ["Sim.Core", "Unity.Addressables", "Unity.ResourceManager"],
+  "autoReferenced": true
+}

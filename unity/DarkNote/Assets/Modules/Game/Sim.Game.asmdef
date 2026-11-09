@@ -1,0 +1,16 @@
+{
+  "name": "Sim.Game",
+  "rootNamespace": "Sim.Game",
+  "references": [
+    "Sim.Core",
+    "Sim.Vehicles",
+    "Sim.World",
+    "Sim.Traffic",
+    "Sim.Mobile",
+    "Sim.Controls",
+    "UnityEngine.UI",
+    "Unity.Addressables",
+    "Unity.ResourceManager"
+  ],
+  "autoReferenced": true
+}

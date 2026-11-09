@@ -1,0 +1,7 @@
+{
+  "name": "Sim.Vehicles.Editor",
+  "rootNamespace": "Sim.Vehicles.Editor",
+  "references": ["Sim.Vehicles"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}

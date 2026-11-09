@@ -1,0 +1,6 @@
+{
+  "name": "Sim.World",
+  "rootNamespace": "Sim.World",
+  "references": ["Sim.Core", "Unity.Addressables", "Unity.ResourceManager"],
+  "autoReferenced": true
+}
